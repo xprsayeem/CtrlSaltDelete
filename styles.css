@@ -37,12 +37,12 @@ body {
 }
 
 .left-panel {
-  flex: 0 0 40%;
+  flex: 0 0 45%;
   justify-content: center;
 }
 
 .right-panel {
-  flex: 0 0 60%;
+  flex: 0 0 55%;
   flex-direction: column;
   justify-content: center;
   gap: 16px;
