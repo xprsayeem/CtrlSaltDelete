@@ -2,133 +2,436 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Ctrl+Salt+Delete</title>
+  <title>Ctrl+Salt+Delete - Character Select</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" href="assets/pics/snow.png">
 </head>
 <body>
+  <!-- Full Screen -->
   <div class="desktop">
-    <!-- Left side - MS Paint style window -->
-    <div class="left-panel">
-      <div class="xp-window paint-window">
-        <div class="xp-titlebar">
-          <div class="xp-title-left">
-            <span class="xp-icon xp-icon-paint"></span>
-            <span class="xp-title-text">Ctrl+Salt+Delete - snowscene.png</span>
-          </div>
-          <div class="xp-title-controls">
-            <button class="xp-btn xp-min" aria-hidden="true"></button>
-            <button class="xp-btn xp-max" aria-hidden="true"></button>
-            <button class="xp-btn xp-close" aria-hidden="true"></button>
-          </div>
-        </div>
-
-        <div class="paint-menu-bar">
-          <span>File</span>
-          <span>Edit</span>
-          <span>View</span>
-          <span>Image</span>
-          <span>Colors</span>
-          <span>Help</span>
-        </div>
-
-        <div class="paint-main">
-          <div class="paint-tools">
-            <!-- Paint tools icons or placeholders go here -->
-          </div>
-          <div class="paint-canvas">
-            <div class="paint-canvas">
-              <span>3D snow scene loading soon</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="paint-status-bar">
-          <span class="paint-status-left">Ready</span>
-          <span class="paint-status-right">800 x 600 px</span>
-        </div>
+    <!-- Taskbar -->
+    <div class="xp-taskbar">
+      <div class="start-button">
+        <span class="start-logo">❄</span>
+        <span>Start</span>
+      </div>
+      <!-- Links and About pop-up window -->
+      <div class="taskbar-items">
+        <div class="taskbar-item active">Ctrl+Salt+Delete</div>
+        <button class="taskbar-item-about" id="taskbar-about" type="button">
+          About / Links
+        </button>
+      </div>
+      <div class="system-tray">
+        <span><button class="mute-toggle" type="button" aria-label="Toggle sound"></button></span> 
+        <span>📶</span>
+        <span class="clock">2:47 PM</span>
       </div>
     </div>
 
-    <!-- Right side - stacked XP windows holding info -->
-    <div class="right-panel">
-      <div class="xp-window window-main-info">
-        <div class="xp-titlebar">
-          <div class="xp-title-left">
-            <span class="xp-icon xp-icon-snow"></span>
-            <span class="xp-title-text">Snow Services</span>
-          </div>
-          <div class="xp-title-controls">
-            <button class="xp-btn xp-min" aria-hidden="true"></button>
-            <button class="xp-btn xp-max" aria-hidden="true"></button>
-            <button class="xp-btn xp-close" aria-hidden="true"></button>
-          </div>
+    <!-- Game Window -->
+    <div class="game-window">
+      <header class="game-titlebar">
+        <div class="game-title-left">
+          <span class="game-icon"></span>
+          <span class="game-title-text">Ctrl+Salt+Delete - Character Select</span>
+        </div>        
+        <div class="game-title-controls">
+          <button class="ctrl-dot ctrl-dot-min" type="button" aria-label="Minimize window"></button>
+          <button class="ctrl-dot ctrl-dot-max" type="button" aria-label="Maximize window"></button>
+          <button class="ctrl-dot ctrl-dot-close" type="button" aria-label="Close window"></button>
         </div>
-        <div class="xp-body">
-          <p class="lead">
-            Snow cleared in Oshawa by two cousins with shovels and a snow blower.
-          </p>
-          <ul class="service-list">
-            <li>Clear driveway, sidewalk and front walkway</li>
-            <li>Clear porch, front steps and a safe path to the door</li>
-            <li>Salt your driveway and walkway if you provide the salt</li>
-            <li>Clean snow off your cars for free, usually up to two cars</li>
-          </ul>
-        </div>
-      </div>
+      </header>
 
-      <div class="xp-window window-process">
-        <div class="xp-titlebar">
-          <div class="xp-title-left">
-            <span class="xp-icon xp-icon-list"></span>
-            <span class="xp-title-text">How it works</span>
+      <main class="game-content">
+        <!-- Left side: character select -->
+        <section class="character-section">
+          <div class="char-tabs">
+            <button class="char-tab" data-char="Sayeem">Player 1: Sayeem</button>
+            <button class="char-tab" data-char="Kazi">Player 2: Kazi</button>
+            
+            <div class="game-meta">
+              <span class="meta-fps">FPS: 60</span>
+              <button class="meta-save-slot active" type="button" data-slot="1">
+                Save Slot 1: Your driveway
+              </button>
+              <button class="meta-save-slot" type="button" data-slot="2">
+                Save Slot 2: Parents' driveway
+              </button>
+            </div>
           </div>
-          <div class="xp-title-controls">
-            <button class="xp-btn xp-min" aria-hidden="true"></button>
-            <button class="xp-btn xp-max" aria-hidden="true"></button>
-            <button class="xp-btn xp-close" aria-hidden="true"></button>
-          </div>
-        </div>
-        <div class="xp-body">
-          <ol class="process-list">
-            <li>Text us your address and a quick photo of your driveway.</li>
-            <li>We reply with a price and a time window for when we can come by.</li>
-            <li>You confirm if you want us to do it.</li>
-            <li>We clear the snow! We'll send a photo if you are not home.</li>
-            <li>Pay us with cash or e-transfer.</li>
-          </ol>
-      
-          <div class="pricing">
-            <p>Most small driveways start around 25 dollars.</p>
-            <p>Medium driveways and longer corner lots are usually between 35 and 45 dollars.</p>
-            <p>Larger or heavier jobs are priced case by case.</p>
-            <p>Text a photo and we will give you a firm price before we come out.</p>
-          </div>
-        </div>
-      </div>
 
-      <div class="xp-window window-contact">
-        <div class="xp-titlebar">
-          <div class="xp-title-left">
-            <span class="xp-icon xp-icon-phone"></span>
-            <span class="xp-title-text">Contact</span>
+          <div class="char-main">
+            <div class="char-viewport">
+              <!-- Replace with 3D model later -->
+              <div class="char-silhouette">
+                <span class="char-label">3D model coming soon</span>
+              </div>
+              <div class="char-spotlight"></div>
+            </div>
+
+            <!-- Stats for Sayeem -->
+            <div class="char-stats" data-char="Sayeem">
+              <h2 class="char-name">Sayeem</h2>
+              <p class="char-role">Role: Driveway Dynamo</p>
+
+              <div class="stat-row">
+                <span>Power</span>
+                <div class="stat-bar">
+                  <div class="stat-fill" style="--fill-width: 95%;"></div>
+                </div>
+              </div>
+
+              <div class="stat-row">
+                <span>Speed</span>
+                <div class="stat-bar">
+                  <div class="stat-fill" style="--fill-width: 90%;"></div>
+                </div>
+              </div>
+
+              <div class="stat-row">
+                <span>Reliability</span>
+                <div class="stat-bar">
+                  <div class="stat-fill" style="--fill-width: 100%;"></div>
+                </div>
+              </div>
+
+              <p class="char-flavor">
+                Prefers early mornings, will shovel while you are still in bed.
+              </p>
+            </div>
+
+            <!-- Stats for Kazi -->
+            <div class="char-stats" data-char="Kazi">
+              <h2 class="char-name">Kazi</h2>
+              <p class="char-role">Role: Sidewalk Specialist</p>
+
+              <div class="stat-row">
+                <span>Power</span>
+                <div class="stat-bar">
+                  <div class="stat-fill" style="--fill-width: 90%;"></div>
+                </div>
+              </div>
+
+              <div class="stat-row">
+                <span>Speed</span>
+                <div class="stat-bar">
+                  <div class="stat-fill" style="--fill-width: 90%;"></div>
+                </div>
+              </div>
+
+              <div class="stat-row">
+                <span>Reliability</span>
+                <div class="stat-bar">
+                  <div class="stat-fill" style="--fill-width: 100%;"></div>
+                </div>
+              </div>
+
+              <p class="char-flavor">
+                Calm in blizzards, keeps paths clean and steps safe.
+              </p>
+            </div>
           </div>
-          <div class="xp-title-controls">
-            <button class="xp-btn xp-min" aria-hidden="true"></button>
-            <button class="xp-btn xp-max" aria-hidden="true"></button>
-            <button class="xp-btn xp-close" aria-hidden="true"></button>
+
+          <div class="char-buttons">
+            <button class="btn btn-primary">Select player</button>
+            <button class="btn btn-secondary">Back</button>
           </div>
-        </div>
-        <div class="xp-body">
-          <p class="contact-line">
-            Call or text Sayeem @: <a href="tel:+1 647 806 3530">+1 (647) 806 3530</a>
-          </p>
-          <p class="status-line">
-            Status: <span class="status-dot"></span> We are available for the next snowfall (Friday Nov 21st)!.
-          </p>
-        </div>
+        </section>
+
+        <!-- Right side: HUD panels -->
+        <section class="info-section">
+          <!-- Mission briefing -->
+          <article class="hud-panel hud-mission">
+            <header class="hud-header">Mission Briefing</header>
+            <div class="hud-body">
+              <p class="hud-objective">
+                Objective: Keep your driveway clear and your car free this winter in Oshawa.
+              </p>
+              <ul class="hud-list">
+                <li>Reward: Safe steps, clean car, clear driveway</li>
+                <li>Party: Two cousins with a snow blower and shovels</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Service log -->
+          <article class="hud-panel hud-services">
+            <header class="hud-header">Service Log</header>
+            <div class="hud-body">
+              <h3 class="hud-subtitle">Available skills</h3>
+              <ul class="hud-list">
+                <li>Driveway clear, front walkways clear, steps safe</li>
+                <li>Salt application (you provide the salt)</li>
+                <li>Car snow cleaning, up to two cars, free perk</li>
+              </ul>
+
+              <h3 class="hud-subtitle">Typical cost</h3>
+              <ul class="hud-list">
+                <li>Small driveways: about 30 CAD</li>
+                <li>Large or Long Driveways: 40 to 50 CAD</li>
+                <li>Boss level snowfall: quoted by photo</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Contact console -->
+          <article class="hud-panel hud-contact">
+            <header class="hud-header">Party Invite</header>
+            <div class="hud-body">
+              <p class="hud-callout">
+                Text Mission Control (Sayeem) a photo of your driveway to join the party.
+              </p>
+              <a class="btn btn-ready" href="tel:+16478063530">
+                Call or text: +1 (647) 806 3530
+              </a>
+              <div class="hud-system-log">
+                <p></p>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+    <div class="popup-window hidden" id="aboutWindow" aria-hidden="true">
+      <header class="popup-titlebar">
+        <span class="popup-title">About Ctrl+Salt+Delete</span>
+        <button class="popup-close" type="button" aria-label="Close">×</button>
+      </header>
+      <div class="popup-body">
+        <p class="popup-text">
+          Ctlr+Salt+Delete: A tale of two cousins.<br> Winter quests available all season.
+        </p>
+        <ul class="popup-list">
+          <li><a href="https://github.com/xprsayeem" target="_blank" rel="noopener">Check out my GitHub</a></li>
+          <li><a href="https://sayeem.one" target="_blank" rel="noopener">Or my personal website!</a></li>
+        </ul>
+        <p class="popup-footnote">
+          Tip: Save this page as a shortcut if you want quick access next storm.
+        </p>
       </div>
     </div>
   </div>
+
+  <script>
+    // Audio setup
+    const sfx = {
+      click: new Audio("assets/sfx/click.mp3"),
+      whoosh: new Audio("assets/sfx/whoosh.mp3")
+    };
+
+    sfx.click.volume = 0.5;
+    sfx.whoosh.volume = 0.4;
+
+    let isMuted = false;
+
+    function playSfx(sound) {
+      if (isMuted || !sound) return;
+      sound.currentTime = 0;
+      sound.play().catch(() => {});
+    }
+
+    const muteToggle = document.querySelector(".mute-toggle");
+
+    if (muteToggle) {
+      muteToggle.addEventListener("click", () => {
+        isMuted = !isMuted;
+        muteToggle.classList.toggle("muted", isMuted);
+      });
+    }
+
+    const tabs = document.querySelectorAll(".char-tab");
+    const statBlocks = document.querySelectorAll(".char-stats");
+    
+    const primaryButton = document.querySelector(".btn-primary");
+    const secondaryButton = document.querySelector(".btn-secondary");
+    const readyButton = document.querySelector(".btn-ready");
+
+    const minButton = document.querySelector(".ctrl-dot-min");
+    const maxButton = document.querySelector(".ctrl-dot-max");
+    const closeButton = document.querySelector(".ctrl-dot-close");
+
+    if (primaryButton) {
+      primaryButton.addEventListener("click", () => {
+        playSfx(sfx.click);
+      });
+    }
+
+    if (secondaryButton) {
+      secondaryButton.addEventListener("click", () => {
+        playSfx(sfx.click);
+      });
+    }
+
+    if (readyButton) {
+      readyButton.addEventListener("click", () => {
+        playSfx(sfx.click);
+      });
+    }
+
+    if (minButton) {
+      minButton.addEventListener("click", () => {
+        playSfx(sfx.click);
+      });
+    }
+
+    if (maxButton) {
+      maxButton.addEventListener("click", () => {
+        playSfx(sfx.click);
+      });
+    }    
+
+    if (closeButton) {
+      closeButton.addEventListener("click", () => {
+        playSfx(sfx.click);
+      });
+    }
+
+    const aboutTaskbar = document.getElementById("taskbar-about");
+    const aboutWindow = document.getElementById("aboutWindow");
+    const aboutClose = aboutWindow ? aboutWindow.querySelector(".popup-close") : null;
+    const aboutTitlebar = aboutWindow ? aboutWindow.querySelector(".popup-titlebar") : null;
+
+    function showAboutWindow() {
+      if (!aboutWindow) return;
+      aboutWindow.classList.remove("hidden");
+      aboutWindow.setAttribute("aria-hidden", "false");
+      playSfx(sfx.click);
+    }
+
+    function hideAboutWindow() {
+      if (!aboutWindow) return;
+      aboutWindow.classList.add("hidden");
+      aboutWindow.setAttribute("aria-hidden", "true");
+      playSfx(sfx.click);
+    }
+
+    if (aboutTaskbar) {
+      aboutTaskbar.addEventListener("click", showAboutWindow);
+    }
+
+    if (aboutClose) {
+      aboutClose.addEventListener("click", hideAboutWindow);
+    }
+
+    let isDragging = false;
+    let dragOffsetX = 0;
+    let dragOffsetY = 0;
+
+    function onDragMouseDown(e) {
+      if (!aboutWindow) return;
+      isDragging = true;
+      const rect = aboutWindow.getBoundingClientRect();
+      dragOffsetX = e.clientX - rect.left;
+      dragOffsetY = e.clientY - rect.top;
+
+      document.addEventListener("mousemove", onDragMouseMove);
+      document.addEventListener("mouseup", onDragMouseUp);
+      e.preventDefault();
+    }
+
+    function onDragMouseMove(e) {
+      if (!isDragging || !aboutWindow) return;
+      const x = e.clientX - dragOffsetX;
+      const y = e.clientY - dragOffsetY;
+
+      aboutWindow.style.left = `${x}px`;
+      aboutWindow.style.top = `${y}px`;
+      // prevent snapping from right/bottom
+      aboutWindow.style.right = "auto";
+      aboutWindow.style.bottom = "auto";
+    }
+
+    function onDragMouseUp() {
+      if (!isDragging) return;
+      isDragging = false;
+      document.removeEventListener("mousemove", onDragMouseMove);
+      document.removeEventListener("mouseup", onDragMouseUp);
+    }
+
+    if (aboutTitlebar) {
+      aboutTitlebar.addEventListener("mousedown", onDragMouseDown);
+    }
+
+    const flavorData = {
+      Sayeem: [
+        "Once cleared 21 driveways in one day.",
+        "Special move: Ice patch figure skating.",
+        "Buff: Extra patience with wet heavy snow."
+      ],
+      Kazi: [
+        "Clears sidewalks like a speedrun.",
+        "Never misses a patch on the steps.",
+        "Keeps calm during blizzard conditions."
+      ]
+    };
+
+    function setRandomFlavor(charKey) {
+      const block = document.querySelector(`.char-stats[data-char="${charKey}"] .char-flavor`);
+      if (!block) return;
+      const lines = flavorData[charKey] || [];
+      if (!lines.length) return;
+      const randomLine = lines[Math.floor(Math.random() * lines.length)];
+      block.textContent = randomLine;
+    }
+
+    function activateCharacter(charKey) {
+      statBlocks.forEach(block => {
+        const isActive = block.dataset.char === charKey;
+        block.classList.toggle("active", isActive);
+      });
+      setRandomFlavor(charKey);
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        const target = tab.dataset.char;
+        tabs.forEach(t => t.classList.toggle("active", t === tab));
+        activateCharacter(target);
+        playSfx(sfx.whoosh);
+      });
+    });
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        activateCharacter("Sayeem");
+      });
+    });
+    
+    // 
+    const saveSlots = document.querySelectorAll(".meta-save-slot");
+
+    saveSlots.forEach(slot => {
+      slot.addEventListener("click", () => {
+        saveSlots.forEach(s => s.classList.remove("active"));
+        slot.classList.add("active");
+        playSfx(sfx.click);
+      });
+    });
+
+
+    // typing effect for system log
+    const logParagraph = document.querySelector(".hud-system-log p");
+    if (logParagraph) {
+      const fullText =
+        "System: E-transfer and Cash in CAD accepted.\nStatus: Looking for new quests this winter.";
+      logParagraph.textContent = "";
+      let index = 0;
+      const speed = 25; // milliseconds per character
+
+      function typeNext() {
+        if (index <= fullText.length) {
+          logParagraph.textContent = fullText.slice(0, index);
+          index += 1;
+          setTimeout(typeNext, speed);
+        }
+      }
+
+      typeNext();
+    }
+
+  </script>
+
 </body>
 </html>
