@@ -42,7 +42,8 @@ button, .char-tab, a {
   position: relative;
   width: 90%;
   max-width: 1600px;
-  max-height: calc(100vh - 32px);
+  height: calc(100vh - 92px);
+  max-height: none;
   background: rgba(2, 10, 25, 0.98);
   border-radius: 8px 8px 10px 10px;
   border: 1px solid rgba(58, 125, 255, 0.8);
@@ -101,6 +102,7 @@ button, .char-tab, a {
   flex: 1;
   display: flex;
   gap: 2px;
+  min-width: 0;
 }
 
 .taskbar-item {
@@ -112,6 +114,7 @@ button, .char-tab, a {
   border-radius: 3px;
   max-width: 160px;
   white-space: nowrap;
+  flex: 0 1 auto;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -125,6 +128,7 @@ button, .char-tab, a {
   cursor: pointer;
   font-size: 11px;
   white-space: nowrap;
+  flex: 0 1 auto;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -620,28 +624,72 @@ button, .char-tab, a {
 .char-viewport {
   position: relative;
   border-radius: 10px;
-  background: 
-  repeating-linear-gradient(
+  background:
+    /* scanlines */
+    repeating-linear-gradient(
       180deg,
-      rgba(0, 0, 0, 0.14) 0px,
-      rgba(0, 0, 0, 0.14) 1px,
+      rgba(0, 0, 0, 0.2) 0px,
+      rgba(0, 0, 0, 0.2) 1px,
       transparent 1px,
       transparent 3px
     ),
-  radial-gradient(circle at top, #446b99, #0a1425 65%);
+    radial-gradient(circle at top, #446b99, #050914 65%);
   box-shadow:
-    inset 0 0 25px rgba(0, 0, 0, 0.86),
-    0 0 10px rgba(37, 137, 255, 0.4);
+    0 0 0 1px rgba(120, 185, 255, 0.3),
+    0 0 22px rgba(37, 137, 255, 0.5),
+    inset 0 0 25px rgba(0, 0, 0, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 }
 
+/* border glow */
+.char-viewport::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 8px;
+  border: 1px solid rgba(180, 220, 255, 0.35);
+  box-shadow:
+    0 0 12px rgba(120, 190, 255, 0.35),
+    inset 0 0 8px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+}
+
+/* animated light sweep */
+.char-viewport::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -60%;
+  width: 120%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.18) 15%,
+    rgba(180, 225, 255, 0.1) 25%,
+    transparent 100%
+  );
+  mix-blend-mode: screen;
+  opacity: 0.3;
+  pointer-events: none;
+  transform: translateX(-120%);
+  animation: viewportSweep 15s linear infinite;
+}
+
+@keyframes viewportSweep {
+  0%   { transform: translateX(-130%); }
+  100% { transform: translateX(350%); }
+}
+
+
 .char-viewport model-viewer {
   width: 100%;
   height: 100%;
   outline: none;
+  transform: translateY(6px);
 }
 
 
@@ -1026,27 +1074,83 @@ button, .char-tab, a {
   white-space: pre-line;
 }
 
-/* Responsiveness */
-@media (max-width: 1000px) {
+/* Mobile*/
+@media (max-width: 900px) {
+  .desktop {
+    align-items: flex-start;
+    padding: 8px;
+    padding-bottom: 40px;
+  }
+
   .game-window {
+    width: 100%;
+    height: auto;
     max-height: none;
-    height: 90vh;
+    border-radius: 0;
   }
 
   .game-content {
     flex-direction: column;
+    padding: 8px;
+    gap: 8px;
   }
 
   .character-section,
   .info-section {
-    flex: 1 1 auto;
+    flex: 0 0 auto;
+  }
+
+  .char-main {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .char-viewport {
+    grid-column: 1;
+    grid-row: 1;
+    min-height: 260px;
+  }
+
+  .char-stats {
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: 8px;
+  }
+
+  .char-tabs {
+    margin-left: 0;
+    flex-wrap: wrap;
+  }
+
+  .char-tab {
+    font-size: 10px;
+    padding: 6px 10px;
+  }
+
+  .game-meta {
+    position: static;
+    transform: none;
+    margin-left: auto;
+    text-align: right;
+    padding-top: 4px;
+  }
+
+  .info-section {
+    padding-right: 0;
+  }
+
+  .hud-panel {
+    flex: 0 0 auto;
+  }
+
+  .hud-body {
+    font-size: 11px;
+  }
+
+  .btn,
+  .btn-ready {
+    font-size: 11px;
+    padding: 6px 14px;
   }
 }
 
-/* Taller screens*/
-@media (min-height: 800px) {
-  .game-window {
-    height: calc(100vh - 200px);
-    max-height: none;
-  }
-}
