@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/png" href="assets/pics/snow.png">
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
   <!-- Full Screen -->
@@ -64,11 +65,18 @@
 
           <div class="char-main">
             <div class="char-viewport">
-              <!-- Replace with 3D model later -->
-              <div class="char-silhouette">
-                <span class="char-label">3D model coming soon</span>
-              </div>
-              <div class="char-spotlight"></div>
+                <model-viewer
+                  id="charModel"
+                  src="assets/models/sayeem.glb"
+                  autoplay
+                  auto-rotate
+                  rotation-per-second="15deg"
+                  camera-controls
+                  disable-zoom
+                  exposure="1.1"
+                  shadow-intensity="0.4"
+                  alt="Character preview"
+                ></model-viewer>
             </div>
 
             <!-- Stats for Sayeem -->
@@ -232,6 +240,7 @@
       sound.play().catch(() => {});
     }
 
+    // Mute Button
     const muteToggle = document.querySelector(".mute-toggle");
 
     if (muteToggle) {
@@ -241,9 +250,11 @@
       });
     }
 
+    // Character Select
     const tabs = document.querySelectorAll(".char-tab");
     const statBlocks = document.querySelectorAll(".char-stats");
     
+    // Misc Buttons
     const primaryButton = document.querySelector(".btn-primary");
     const secondaryButton = document.querySelector(".btn-secondary");
     const readyButton = document.querySelector(".btn-ready");
@@ -252,6 +263,7 @@
     const maxButton = document.querySelector(".ctrl-dot-max");
     const closeButton = document.querySelector(".ctrl-dot-close");
 
+    // Button Click sounds
     if (primaryButton) {
       primaryButton.addEventListener("click", () => {
         playSfx(sfx.click);
@@ -288,6 +300,7 @@
       });
     }
 
+    // Taskbar and About Popup
     const aboutTaskbar = document.getElementById("taskbar-about");
     const aboutWindow = document.getElementById("aboutWindow");
     const aboutClose = aboutWindow ? aboutWindow.querySelector(".popup-close") : null;
@@ -338,7 +351,6 @@
 
       aboutWindow.style.left = `${x}px`;
       aboutWindow.style.top = `${y}px`;
-      // prevent snapping from right/bottom
       aboutWindow.style.right = "auto";
       aboutWindow.style.bottom = "auto";
     }
@@ -354,6 +366,7 @@
       aboutTitlebar.addEventListener("mousedown", onDragMouseDown);
     }
 
+    // Character Flavors
     const flavorData = {
       Sayeem: [
         "Once cleared 21 driveways in one day.",
@@ -376,12 +389,29 @@
       block.textContent = randomLine;
     }
 
+    // Switching Character Models 
+    const modelViewer = document.querySelector("#charModel");
+
+    const modelSources = {
+      Sayeem: "assets/models/sayeem.glb",
+      Kazi: "assets/models/kazi.glb"
+    };
+
     function activateCharacter(charKey) {
       statBlocks.forEach(block => {
         const isActive = block.dataset.char === charKey;
         block.classList.toggle("active", isActive);
       });
       setRandomFlavor(charKey);
+      setCharacterModel(charKey);
+    }
+
+    function setCharacterModel(charKey) {
+      if (!modelViewer) return;
+      const src = modelSources[charKey];
+      if (src) {
+        modelViewer.src = src;
+      }
     }
 
     tabs.forEach(tab => {
