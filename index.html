@@ -14,17 +14,17 @@
   <div class="desktop">
     <!-- Taskbar -->
     <div class="xp-taskbar">
-      <div class="start-button">
+      <!-- Start Button -->
+      <div class="start-button" id="start-button" role="button">
         <span class="start-logo">❄</span>
         <span>Start</span>
       </div>
-      <!-- Links and About pop-up window -->
+      <!-- Ctrl+Salt+Delete and About minimized windows -->
       <div class="taskbar-items">
         <div class="taskbar-item active">Ctrl+Salt+Delete</div>
-        <button class="taskbar-item-about" id="taskbar-about" type="button">
-          About / Links
-        </button>
+        <div class="about-button" id="taskbar-item-about" role="button">About</div>
       </div>
+      <!-- System Tray -->
       <div class="system-tray">
         <span><button class="mute-toggle" type="button" aria-label="Toggle sound"></button></span> 
         <span>📶</span>
@@ -156,31 +156,31 @@
             <header class="hud-header">Mission Briefing</header>
             <div class="hud-body">
               <p class="hud-objective">
-                Objective: Keep your driveway clear and your car free this winter in Oshawa.
+                Objective: Keep your driveway, walkways, and car snow-free all winter in Oshawa
               </p>
               <ul class="hud-list">
                 <li>Reward: Safe steps, clean car, clear driveway</li>
-                <li>Party: Two cousins with a snow blower and shovels</li>
+                <li>Party: Two cousins, one snow blower, unlimited shoveling energy</li>
               </ul>
             </div>
           </article>
 
-          <!-- Service log -->
+          <!-- Loadout & Pricing -->
           <article class="hud-panel hud-services">
-            <header class="hud-header">Service Log</header>
+            <header class="hud-header">Loadout & Pricing</header>
             <div class="hud-body">
-              <h3 class="hud-subtitle">Available skills</h3>
+              <h3 class="hud-subtitle">Core Abilities</h3>
               <ul class="hud-list">
-                <li>Driveway clear, front walkways clear, steps safe</li>
-                <li>Salt application (you provide the salt)</li>
-                <li>Car snow cleaning, up to two cars, free perk</li>
+                <li><strong>Loadout:</strong> Snow blower plus shovels tuned for tight corners and heavy slush.</li>
+                <li><strong>Service:</strong> Clean path from curb to door to make your steps feel secure.</li>
+                <li><strong>Perks:</strong> De-icing and snow removed from your cars (Free)</li>
               </ul>
 
               <h3 class="hud-subtitle">Typical cost</h3>
               <ul class="hud-list">
-                <li>Small driveways: about 30 CAD</li>
-                <li>Large or Long Driveways: 40 to 50 CAD</li>
-                <li>Boss level snowfall: quoted by photo</li>
+                <li>Small driveways: 30 CAD</li>
+                <li>Large or long driveways: 40 to 50 CAD</li>
+                <li>Boss level snowfall (25+ centimeters): quoted by photo</li>
               </ul>
             </div>
           </article>
@@ -227,11 +227,15 @@
     // Audio setup
     const sfx = {
       click: new Audio("assets/sfx/click.mp3"),
-      whoosh: new Audio("assets/sfx/whoosh.mp3")
+      whoosh: new Audio("assets/sfx/whoosh.mp3"),
+      pulse: new Audio("assets/sfx/pulse.mp3"),
+      boop: new Audio("assets/sfx/boop.mp3")
     };
 
     sfx.click.volume = 0.5;
     sfx.whoosh.volume = 0.4;
+    sfx.pulse.volume = 0.5;
+    sfx.boop.volume = 0.5;
 
     let isMuted = false;
 
@@ -267,7 +271,7 @@
     // Button Click sounds
     if (primaryButton) {
       primaryButton.addEventListener("click", () => {
-        playSfx(sfx.click);
+        playSfx(sfx.pulse);
       });
     }
 
@@ -279,39 +283,47 @@
 
     if (readyButton) {
       readyButton.addEventListener("click", () => {
-        playSfx(sfx.click);
+        playSfx(sfx.pulse);
       });
     }
 
     if (minButton) {
       minButton.addEventListener("click", () => {
-        playSfx(sfx.click);
+        playSfx(sfx.boop);
       });
     }
 
     if (maxButton) {
       maxButton.addEventListener("click", () => {
-        playSfx(sfx.click);
+        playSfx(sfx.boop);
       });
     }    
 
     if (closeButton) {
       closeButton.addEventListener("click", () => {
-        playSfx(sfx.click);
+        playSfx(sfx.boop);
       });
     }
 
     // Taskbar and About Popup
-    const aboutTaskbar = document.getElementById("taskbar-about");
+    const startTaskbar = document.getElementById("start-button");
+    const aboutTaskbar = document.getElementById("taskbar-item-about");
     const aboutWindow = document.getElementById("aboutWindow");
     const aboutClose = aboutWindow ? aboutWindow.querySelector(".popup-close") : null;
     const aboutTitlebar = aboutWindow ? aboutWindow.querySelector(".popup-titlebar") : null;
+
+    if (startTaskbar) {
+      startTaskbar.addEventListener("click", () => {
+        playSfx(sfx.pulse);
+      });
+    }
+
 
     function showAboutWindow() {
       if (!aboutWindow) return;
       aboutWindow.classList.remove("hidden");
       aboutWindow.setAttribute("aria-hidden", "false");
-      playSfx(sfx.click);
+      playSfx(sfx.boop);
     }
 
     function hideAboutWindow() {
@@ -446,7 +458,7 @@
     const logParagraph = document.querySelector(".hud-system-log p");
     if (logParagraph) {
       const fullText =
-        "System: E-transfer and Cash in CAD accepted.\nStatus: Looking for new quests this winter.";
+        "System: E-transfer and Cash in CAD accepted.\nStatus: Available in Oshawa this winter!";
       logParagraph.textContent = "";
       let index = 0;
       const speed = 25; // milliseconds per character
