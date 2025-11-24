@@ -1074,14 +1074,16 @@ button, .char-tab, a {
   white-space: pre-line;
 }
 
-/* Mobile*/
+/* Mobile / narrow layout */
 @media (max-width: 900px) {
+  /* Desktop container */
   .desktop {
     align-items: flex-start;
     padding: 8px;
     padding-bottom: 40px;
   }
 
+  /* Game window fills width and can grow taller */
   .game-window {
     width: 100%;
     height: auto;
@@ -1089,6 +1091,7 @@ button, .char-tab, a {
     border-radius: 0;
   }
 
+  /* Stack left and right sections */
   .game-content {
     flex-direction: column;
     padding: 8px;
@@ -1100,6 +1103,7 @@ button, .char-tab, a {
     flex: 0 0 auto;
   }
 
+  /* Character area: model on top, stats below */
   .char-main {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
@@ -1117,9 +1121,12 @@ button, .char-tab, a {
     margin-top: 8px;
   }
 
+  /* Tabs and meta */
   .char-tabs {
-    margin-left: 0;
+    margin-left: 5px;
     flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 4px;
   }
 
   .char-tab {
@@ -1130,11 +1137,19 @@ button, .char-tab, a {
   .game-meta {
     position: static;
     transform: none;
-    margin-left: auto;
-    text-align: right;
-    padding-top: 4px;
+    order: -1;
+    width: 100%;
+    text-align: left;
+    padding-top: 0;
+    margin-bottom: 4px;
+    font-size: 9px;
   }
 
+  .meta-save-slot {
+    display: block;
+  }
+
+  /* HUD panels should not stretch weirdly */
   .info-section {
     padding-right: 0;
   }
@@ -1143,6 +1158,7 @@ button, .char-tab, a {
     flex: 0 0 auto;
   }
 
+  /* Slight size tweaks for small screens */
   .hud-body {
     font-size: 11px;
   }
